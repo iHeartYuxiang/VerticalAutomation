@@ -22,7 +22,7 @@ public abstract class Page {
 	Logger logger = Logger.getLogger(Page.class);
 	
 	static String browser ="";
-	static String mediaType = "web";//could be ios, android, and auto_ios, auto_android
+	public static String mediaType = "web";//could be ios, android, and auto_ios, auto_android
 	//static final String USER_NAME ="iheartrocks999@gmail.com";
 	//This part shall be moved to run file
 	static final String USER_NAME ="iheartrocks888@gmail.com";
@@ -30,6 +30,10 @@ public abstract class Page {
 	static final String FACEBOOK_USER_NAME = USER_NAME;
 	static final String GOOGLE_USER_NAME = USER_NAME;
 	
+	//for ubiquitous Search function
+	private static WebElement searchField;
+	private static String searchTerm;
+	private static WebElement searchButton;
 	
 	public static final String screenshot_folder="iosScreenshots";
 	public static StringBuffer errors = new StringBuffer(); 
@@ -50,6 +54,7 @@ public abstract class Page {
 	public Page(WebDriver _driver)
 	{   
 		this.driver = _driver;
+		
 		//PageFactory.initElements(driver, this);
 		if (mediaType.equals("ios"))
 			PageFactory.initElements(new AppiumFieldDecorator(driver), this);	
@@ -60,31 +65,29 @@ public abstract class Page {
 			{}
 		}
 		
+	   locateElements();
+	}
+	
+	public abstract void locateElements();
+	
+	public static void search(String searchTerm)
+	{   System.out.println("See  mediaType:" + mediaType);
+	   if(mediaType.equals("ios"))
+	   {   System.out.println("in ios section.");
+		   searchButton = driver.findElement(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAButton[3]"));
+		   searchField = driver.findElement(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIASearchBar[1]"));
+		  
+		   searchButton.click();
+	   }else if (mediaType.equals("web"))
+	   {   System.out.println("in WEB section.");
+		   searchField = driver.findElement(By.cssSelector("#page-view-container > div > div.header > div.header-wrapper > div > div.header-right > form > div.form-group.ui-inline-block.search-input > input"));
+		   
+	   }
+		
+		searchField.sendKeys(searchTerm);
 	}
 	
 	
-	/*
-	public WebElement locate(String value)
-	{
-		 return locateBy("css", value);
-	}
-	
-	public WebElement locateBy(String method, String value)
-	{   By by;
-		if (method.equalsIgnoreCase("css"))
-		    by = new By.ByCssSelector(value);
-		else if (method.equalsIgnoreCase("xpath"))
-			  by = new By.ByXPath(value);
-		else if (method.equalsIgnoreCase("id"))
-			  by = new By.ById(value);
-		else if (method.equalsIgnoreCase("name"))
-			  by = new By.ByName(value);
-		else 
-			by = new By.ByXPath(value);
-			  
-	    return driver.findElement(by);
-	}
-	*/
 	
 	public boolean  isElementPresent(WebElement element)
 	{
@@ -166,16 +169,6 @@ public abstract class Page {
 		return winHandleBefore;
 	}
 	
-	/* This is mobile-specific
-	public Set<String> getContextHandles()
-	{
-		Set<String> contexts = driver.getContextHandles(); //Errors here
-		for(String context : contexts) //debug
-			System.out.println(context);
-		
-		return contexts;
-	}	
-	*/
 	
 	public void realDeviceWait(int seconds)
 	{

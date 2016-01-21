@@ -3,7 +3,10 @@ package com.iheart.vertical.ios;
 
 import com.iheart.vertical.abstractLayer.*;
 import com.iheart.vertical.ios.*;
+import com.iheart.vertical.web.WebLiveRadio;
 import com.iheart.vertical.web.WebLogin;
+import com.iheart.vertical.web.WebNavigation;
+import com.iheart.vertical.web.WebPlayer;
 
 import java.util.concurrent.TimeUnit;
 
@@ -44,8 +47,10 @@ public class iosTest {
 	// private static final String IPA_NAME = "/Users/1111128/Library/Developer/Xcode/DerivedData/iPhone-gqsmhjopkcjlrpcwsssgazkzqabp/Build/Products/Debug-iphonesimulator/iHeartRadio.app";
 	 private static final String IPA_NAME = "/Users/1111128/Library/Developer/Xcode/DerivedData/iPhone-cgjadqsrbgztopfcrtkodcgtscgf/Build/Products/Debug-iphonesimulator/iHeartRadio.app";
 	 
-	 
+	 private IOSNavigation navigation;
 	 private IOSLogin loginPage;
+	 private IOSPlayer player;
+	 private IOSLiveRadio liveRadio;
 	 
 	// private Player player;
 	
@@ -66,11 +71,17 @@ public class iosTest {
 	  //driver = Utils.launchAPPinRealDevice(DEVICE_NAME, UDID, BUNDLE_ID, IPA_NAME);
 		
 	   Page.setDriver(driver);
+	   Page.mediaType = "ios";
 	   
 	   Page.clearErrors();
 	   
+	   
+	   navigation = new IOSNavigation(driver);
 	   //loginPage = PageFactory.initElements(driver, IOSLogin.class);
 	   loginPage = new IOSLogin(driver);
+	   player = new IOSPlayer(driver);
+       Page.setPlayer(player);
+       liveRadio = new IOSLiveRadio(driver);
 	    
 	  }
 	
@@ -87,6 +98,33 @@ public class iosTest {
 	}
 	
 
+	@Test
+	public void testFilterLiveStation() throws Exception {
+		System.out.println("test method:" +  name.getMethodName() );
+	   try{
+		   loginPage.login();
+		   navigation.gotoPage("liveRadio");
+           liveRadio.filterLiveStation();
+	   }catch(Exception e)
+	   {   handleException(e);
+	   }
+	}
+	
+	@Test
+	public void testSearch_ThumbUp_ThumbDown_Skip_Favorite() throws Exception {
+		System.out.println("test method:" +  name.getMethodName() );
+		System.out.println("CHECK IT RIGHT NOW:" + Page.mediaType);
+	   try{
+		   loginPage.login();
+		   navigation.gotoPage("artistRadio");
+		   Page.search("groban");
+		   
+           //liveRadio.filterLiveStation();
+	   }catch(Exception e)
+	   {   handleException(e);
+	   }
+	}
+	
 	
 	  @After
 	  public void tearDown() {

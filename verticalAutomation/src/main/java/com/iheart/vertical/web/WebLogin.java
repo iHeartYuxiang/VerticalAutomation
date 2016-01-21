@@ -25,6 +25,13 @@ import org.openqa.selenium.JavascriptExecutor;
 
 
 public class WebLogin extends Login {
+	
+	//for web
+    @FindBy(css=".icon-account") public WebElement web_loginButton;
+	@FindBy(css = "input[name='username']") public WebElement web_userName;
+	@FindBy(css = "input[name='password']") public WebElement web_password;
+	@FindBy(css = "#dialog > div > div.dialog.ui-on-grey > div.wrapper > div > form > button") public WebElement web_login;
+	
  
     public WebLogin()
     {
@@ -37,7 +44,13 @@ public class WebLogin extends Login {
     	
     }
 	
-	
+	public void locateElements()
+	{
+		loginButton = web_loginButton;
+		userName = web_userName;
+		password = web_password;
+		login = web_login;
+	}
 	
 	
 }

@@ -56,4 +56,9 @@ public class WebNavigation extends Page implements Navigation{
 	}
 	
 	
+	public void locateElements()
+	{
+		
+	}
+	
 }

@@ -33,8 +33,10 @@ public class RunWebSanity {
 
 		WebDriver driver;
 		
+		WebNavigation navigation;
 		WebLogin loginPage;
 		WebPlayer player;
+		WebLiveRadio liveRadio;
 		
 		
 		//String browser = "firefox";
@@ -57,6 +59,8 @@ public class RunWebSanity {
 	       // player = PageFactory.initElements(driver, WebPlayer.class);
 	       loginPage = new WebLogin(driver);
 	       player = new WebPlayer(driver);
+	       Page.setPlayer(player);
+	       liveRadio = new WebLiveRadio(driver);
 	        
 	        Page.getErrors().delete(0, Page.getErrors().length());
 	        
@@ -67,21 +71,42 @@ public class RunWebSanity {
 		
 		
 		  @Test
-		     public void testLogin() throws Exception
-		     {   
-		         System.out.println("test method:" +  name.getMethodName() );
-		         
-		         
-		         try{
-		             loginPage.login();
-		         }catch(Exception e)
-		         {
-		             handleException(e);
-		         }      
-		         
-		        
-		         System.out.println(name.getMethodName() + " is Done.");
-		     }     
+	     public void testLogin() throws Exception
+	     {   
+	         System.out.println("test method:" +  name.getMethodName() );
+	         
+	         
+	         try{
+	             loginPage.login();
+	         }catch(Exception e)
+	         {
+	             handleException(e);
+	         }      
+	         
+	        
+	         System.out.println(name.getMethodName() + " is Done.");
+	     }     
+		  
+		  
+		 @Test
+	     public void testFilterLiveStation() throws Exception
+	     {   
+	         System.out.println("test method:" +  name.getMethodName() );
+	         
+	         
+	         try{
+	             loginPage.login();
+	             navigation.gotoPage("liveRadio");
+	             liveRadio.filterLiveStation();
+	         }catch(Exception e)
+	         {
+	             handleException(e);
+	         }      
+	         
+	        
+	         System.out.println(name.getMethodName() + " is Done.");
+	     }     
+		
 		
 		  @Test
 		     public void testPlayer_skip() throws Exception

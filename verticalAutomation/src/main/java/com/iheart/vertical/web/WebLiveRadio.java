@@ -12,21 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class WebLiveRadio extends LiveRadio {
 
-	/*
-	 *  public WebElement firstLive;
-    public  WebElement firstLiveTextLink;
-    
-    //for filter station
-    public WebElement firstStationLabel;
-    public WebElement country;
-    public WebElement city;
-    public WebElement genresDropDown;
-    public WebElement firstStation;
-    public WebElement stationPlaying;
-  
-    
-	 * 
-	 */
+	
 	
 	@FindBy(css="li.tile:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > button:nth-child(2)")
 	private WebElement web_firstLive;
@@ -55,11 +41,13 @@ public class WebLiveRadio extends LiveRadio {
 
 	
 	   public WebLiveRadio()
-	   {
-		  //  WebNavigation navigation = new WebNavigation();
-		    loginPage = PageFactory.initElements(driver, WebLogin.class);
-			player = PageFactory.initElements(driver, WebPlayer.class);
-		    
+	   {   this(driver);
+		  
+	   } 
+	   
+	   public WebLiveRadio(WebDriver driver)
+	   {   super(driver);
+	     
 	   } 
 	   //For logged in cases
 		public void thumbUp()
@@ -67,7 +55,7 @@ public class WebLiveRadio extends LiveRadio {
 			super.thumbUp();
 		}
 		
-	private void locateElements()
+	public void locateElements()
 	{
 	    firstLiveTextLink = this.web_firstLiveTextLink;
 	    
@@ -77,18 +65,24 @@ public class WebLiveRadio extends LiveRadio {
 	    city = this.web_city;
 	    genresDropDown = this.web_genresDropDown;
 	    firstStation  = this.web_firstStation;
-	    stationPlaying = this.stationPlaying;
+	    stationPlaying = this.web_stationPlaying;
 	  
 		 
 	}
 		
 	
-	public void filterLiveStation()
-	{   
-	    super.filterLiveStation();
-		
+	public void chooseCountry()
+	{ 
+		new Select(country).selectByVisibleText("Mexico");
 	}
 	
+	public void chooseCity()
+	{
+		new Select(driver.findElement(By.name("city"))).selectByIndex(1);
+	}
 	
-	
+	public void chooseGenre()
+	{
+		new Select(genresDropDown).deselectByIndex(2);
+	}
 }

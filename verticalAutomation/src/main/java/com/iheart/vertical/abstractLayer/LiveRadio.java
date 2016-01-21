@@ -1,19 +1,8 @@
 package com.iheart.vertical.abstractLayer;
 
 
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import com.iheart.vertical.web.WebLogin;
-import com.iheart.vertical.web.WebNavigation;
-import com.iheart.vertical.web.WebPlayer;
-
 
 public abstract class LiveRadio extends Page {
 
@@ -30,11 +19,6 @@ public abstract class LiveRadio extends Page {
   
     
     
-   
-    public Login loginPage;// = PageFactory.initElements(driver, Login.class);
-	public Player player;// = PageFactory.initElements(driver, Player.class);
-    
-    
     public LiveRadio()
     {
     	this(driver);
@@ -47,7 +31,7 @@ public abstract class LiveRadio extends Page {
     
 	public void thumbUp()
 	{
-		loginPage.login();
+		
 		Navigation.gotoPage("liveRadio");
 		int count = 0; 
 		do {
@@ -76,22 +60,29 @@ public abstract class LiveRadio extends Page {
 		String playingStation = stationPlaying.getText();
 		System.out.println("station PLAYING:" + playingStation);
 		
-		player.makeSureItIsPlaying();
+		if(player == null)
+			System.out.println("Player is null");
+		else
+		    player.makeSureItIsPlaying();
 		
 		
 		if (!chosenStation.equalsIgnoreCase(playingStation))
 			handleError("Filter is not working.", "filterLiveStation");
 	}
 	
+	
+	
 	private void filterStation()
 	{   WaitUtility.sleep(1000);
-		new Select(country).selectByVisibleText("Mexico");
+		chooseCountry();
 		WaitUtility.sleep(2000);
 		//new Select(city).selectByIndex(3);
-		new Select(driver.findElement(By.name("city"))).selectByIndex(1);
+		chooseCity();
 		WaitUtility.sleep(2000);
-		new Select(genresDropDown).deselectByIndex(2);
+		chooseGenre();
 	}
 	
-    
+	public abstract void chooseCountry();
+	public abstract void chooseCity();
+	public abstract void chooseGenre();
 }

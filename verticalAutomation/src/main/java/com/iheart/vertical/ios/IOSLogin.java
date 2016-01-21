@@ -14,7 +14,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class IOSLogin extends Login {
 	
-
+   /*
     @iOSFindBy(name="Facebook") public WebElement facebookButton;
 	
 	@iOSFindBy(xpath="//UIAApplication[1]/UIAWindow[2]/UIAScrollView[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
@@ -54,7 +54,16 @@ public class IOSLogin extends Login {
 	
 	//for verification: Maybe shall move nav bar stuff up to the Page.java?
 	@iOSFindBy(name="For You") private WebElement forYou;
+	*/
 	
+	//for ios 
+		@iOSFindBy(name="Log In") private IOSElement ios_loginButton;
+		@iOSFindBy(xpath="//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIATextField[1]")
+	    	private IOSElement ios_userName;
+		@iOSFindBy(xpath="//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIASecureTextField[1]")
+			private IOSElement ios_password;
+		@iOSFindBy(xpath= "//UIAApplication[1]/UIAWindow[1]/UIAButton[2]") private IOSElement ios_login;
+		
 	
 	
 	
@@ -135,6 +144,14 @@ public class IOSLogin extends Login {
 		{
 		  // e.printStackTrace();	
 		}
+	}
+	
+	public void locateElements()
+	{
+		loginButton = ios_loginButton;
+		userName = ios_userName;
+		password = ios_password;
+		login = ios_login;
 	}
 	
     
