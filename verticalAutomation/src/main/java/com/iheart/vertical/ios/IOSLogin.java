@@ -154,5 +154,9 @@ public class IOSLogin extends Login {
 		login = ios_login;
 	}
 	
+	public void setLocation()
+	{
+		//do nothing
+	}
     
 }

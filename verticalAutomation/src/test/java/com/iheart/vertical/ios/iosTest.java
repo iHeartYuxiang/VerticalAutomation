@@ -2,20 +2,11 @@ package com.iheart.vertical.ios;
 
 
 import com.iheart.vertical.abstractLayer.*;
-import com.iheart.vertical.ios.*;
-import com.iheart.vertical.web.WebLiveRadio;
-import com.iheart.vertical.web.WebLogin;
-import com.iheart.vertical.web.WebNavigation;
-import com.iheart.vertical.web.WebPlayer;
-
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*; 
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.BasicConfigurator;
 import org.junit.Test; 
-import org.junit.Ignore; 
 import org.junit.Before; 
 import org.junit.After; 
 import org.junit.Rule;
@@ -23,21 +14,12 @@ import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.rules.TestName;
 import org.junit.runner.Description;
-import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.PageFactory;
 
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
-import junit.framework.TestCase;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 public class iosTest {
 	private static final String DEVICE_NAME = "QA iPhone 5s";
@@ -52,12 +34,8 @@ public class iosTest {
 	 private IOSPlayer player;
 	 private IOSLiveRadio liveRadio;
 	 
-	// private Player player;
-	
-	 
 	 private IOSDriver driver;
-	  
-	  private String sessionId;
+	
 	  
 	  @Rule public TestName name = new TestName();
 		

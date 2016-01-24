@@ -43,11 +43,14 @@ public abstract class Page {
 		//PageFactory.initElements(driver, this);
 		if (mediaType.equals("ios"))
 			PageFactory.initElements(new AppiumFieldDecorator(driver), this);	
-		else if (mediaType.equalsIgnoreCase("web"))
-		{	try{
-			   PageFactory.initElements(driver, this);
-			}catch(Exception e)
-			{}
+		else if (mediaType.equalsIgnoreCase("android"))
+		{	PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+		}else 
+		{
+			try{
+				   PageFactory.initElements(driver, this);
+				}catch(Exception e)
+				{}
 		}
 	}
 	
@@ -56,9 +59,12 @@ public abstract class Page {
 		this.driver = _driver;
 		
 		//PageFactory.initElements(driver, this);
-		if (mediaType.equals("ios"))
-			PageFactory.initElements(new AppiumFieldDecorator(driver), this);	
-		else if (mediaType.equalsIgnoreCase("web"))
+		if (mediaType.equals("ios") || mediaType.equals("android"))
+		{	
+			
+			PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+		
+		}else if (mediaType.equalsIgnoreCase("web"))
 		{	try{
 			   PageFactory.initElements(driver, this);
 			}catch(Exception e)

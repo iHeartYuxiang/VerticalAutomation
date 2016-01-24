@@ -40,7 +40,11 @@ public abstract class Login  extends Page{
 	}
 	
 	public void login(String _userName, String _password)
-	{   
+	{   WaitUtility.sleep(2000);
+		//Set Location?
+		if (Page.mediaType.equals("android"))
+			setLocation();
+		
 		int count = 0;    
 		do{
 			
@@ -56,6 +60,7 @@ public abstract class Login  extends Page{
 			count++;
 		}while (count< 6 && !driver.getPageSource().contains("Don't have an account?"));
 		
+		
 		WaitUtility.sleep(1000);
     	userName.sendKeys(_userName);
 	    password.sendKeys(_password);
@@ -66,6 +71,6 @@ public abstract class Login  extends Page{
 	}
 	
 	
-	
+	public abstract void setLocation();
    
 }

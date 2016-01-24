@@ -42,6 +42,10 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 
+import org.apache.commons.exec.DefaultExecuteResultHandler;
+import org.apache.commons.exec.DefaultExecutor;
+import org.apache.commons.exec.CommandLine;;
+
 
 public class Utils {
 	
@@ -154,6 +158,39 @@ public class Utils {
 	}
 	
 	
+
+	public  static  AndroidDriver launchAPPinGenymotion(String deviceName, String pathToBuild) throws Exception
+	{
+		 DesiredCapabilities capabilities = new DesiredCapabilities();
+	
+	     DefaultExecutor executor = new DefaultExecutor();
+	     DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
+	
+	    // CommandLine launchEmul = new CommandLine("C:/Program Files/Genymobile/Genymotion/player");
+	     CommandLine launchEmul = new CommandLine("/Users/1111128/.Genymobile/Genymotion/deployed");
+	     launchEmul.addArgument("--vm-name");
+	     launchEmul.addArgument("\""+deviceName+"\"");
+	     executor.setExitValue(1);
+	     executor.execute(launchEmul, resultHandler);
+	     Thread.sleep(40);
+	
+	     //capabilities.setCapability("deviceName","Google Nexus 5 - 4.4.4 API 19 - 1080x1920");   \
+	     capabilities.setCapability("deviceName", deviceName);
+	     capabilities.setCapability("platformVersion", "4.3");
+	     capabilities.setCapability("platformName", "Android");
+	     capabilities.setCapability("app", pathToBuild);
+	
+	     AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
+	     System.out.println("SetUp is successful and Appium Driver is launched successfully");
+	     
+	  // We have our own timeouts, don't need this as much, reduced to half a second
+			driver.manage().timeouts().implicitlyWait(60, TimeUnit.MILLISECONDS);
+		   
+		   WaitUtility.sleep(3000);
+		   return driver;
+
+	}
+	
 	public  static  AndroidDriver launchAPPinEmulator(String emulatorName, String pathToBuild) throws Exception
 	{
 		AndroidDriver driver = null;
@@ -169,11 +206,13 @@ public class Utils {
 	   driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 	  */
 	    
-	    capabilities.setCapability("deviceName", emulatorName);
-       	capabilities.setCapability("avd", emulatorName);
+	    capabilities.setCapability("deviceName",emulatorName);
+     // 	capabilities.setCapability("avd", emulatorName);
         capabilities.setCapability("platformVersion", "4.4.2");
+
         capabilities.setCapability("app", pathToBuild);
        capabilities.setCapability("bundleID", "com.example.sample.id");
+        capabilities.setCapability("app", pathToBuild);
         capabilities.setCapability("appPackage", "com.clearchannel.iheartradio.controller");
         
         // Load other properties
@@ -193,6 +232,7 @@ public class Utils {
         }
         try{
         	driver = new AndroidDriver(appiumUrl, capabilities);
+        	System.out.println("Android driver is created.");
         }
         catch(Exception e ){
         	e.printStackTrace();

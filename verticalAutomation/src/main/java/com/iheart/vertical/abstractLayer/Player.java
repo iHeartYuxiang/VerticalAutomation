@@ -191,11 +191,6 @@ public abstract class Player extends Page{
 				handleGladYouLikeItPopup();
 	}
 	
-	//This happens when you thumbup a already thumbuped song track
-	public abstract void handleGladYouLikeItPopup();
-	
-	
-	public abstract void handleGladAfterFavorite();
 	
 	
 	
@@ -395,8 +390,6 @@ public abstract class Player extends Page{
 		}
 	}
 	
-	//Thumbing down customizes your station without using a skip.
-	public abstract void handleThumbDownPopUpForArtistStation();
 	
 	
 	private boolean isFavDone()
@@ -502,5 +495,13 @@ public abstract class Player extends Page{
 		 
 	}
 	
+	//Thumbing down customizes your station without using a skip.
+	public abstract void handleThumbDownPopUpForArtistStation();
+	
+	//This happens when you thumbup a already thumbuped song track
+	public abstract void handleGladYouLikeItPopup();
+	
+	
+	public abstract void handleGladAfterFavorite();
 	
 }
