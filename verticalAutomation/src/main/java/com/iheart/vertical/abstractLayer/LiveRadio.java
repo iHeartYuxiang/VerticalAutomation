@@ -48,14 +48,14 @@ public abstract class LiveRadio extends Page {
 	
 	public void filterLiveStation()
 	{   
-		Navigation.gotoPage("liveRadio");
+		//Navigation.gotoPage("liveRadio");
 	    
 		filterStation();
 		String chosenStation = firstStationLabel.getText();
 		System.out.println("chosen station:" + chosenStation);
 		firstStation.click();
 		//Increase waiting time since sometime it is slow or it is just buffering
-		WaitUtility.sleep(8000);
+		WaitUtility.sleep(1000);
 		
 		String playingStation = stationPlaying.getText();
 		System.out.println("station PLAYING:" + playingStation);
@@ -75,10 +75,10 @@ public abstract class LiveRadio extends Page {
 	private void filterStation()
 	{   WaitUtility.sleep(1000);
 		chooseCountry();
-		WaitUtility.sleep(2000);
+		WaitUtility.sleep(1000);
 		//new Select(city).selectByIndex(3);
 		chooseCity();
-		WaitUtility.sleep(2000);
+		//WaitUtility.sleep(2000);
 		chooseGenre();
 	}
 	

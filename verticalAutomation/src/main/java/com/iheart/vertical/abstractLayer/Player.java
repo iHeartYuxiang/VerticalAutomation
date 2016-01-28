@@ -354,27 +354,11 @@ public abstract class Player extends Page{
 			WaitUtility.sleep(1000);
 			handleUnFavConfirmation();
 		}
-		
+		WaitUtility.sleep(1000);
 		favorite.click();
 		WaitUtility.sleep(500);
 
 		handleGladAfterFavorite();
-		
-		//Verify that icon is filled
-		if (!favorite.getAttribute("value").equals("1"))
-			handleError("Add to Favorite failed.", "doFavorite");
-		
-	/*
-		String response = "";
-		response = driver.findElement(By.xpath("//UIAApplication[1]/UIAWindow[1]/UIAStaticText[8]")).getText();
-	    System.out.println("See favorite growls:" + response);
-		
-		
-		//Station added to your favorites!
-		if (!response.contains("Station added"))
-			handleError("Add to Favorite failed.", "doFavorite");
-			
-	*/		
 		  
 	}
 	
@@ -473,14 +457,14 @@ public abstract class Player extends Page{
 		    play.isDisplayed();
 	    	//icon_play_inPlayer.isDisplayed();
 	
-		    System.out.println("Music is not playing. About to click.");
+		 //   System.out.println("Music is not playing. About to click.");
 	
 		    //icon_play_inPlayer.click();
 		    play.click();
 
 	    }catch(Exception e)
 
-	    {   System.out.println("Music is playing. ");
+	    {  // System.out.println("Music is playing. ");
 	    	return;
 	    }
 	    
@@ -489,11 +473,8 @@ public abstract class Player extends Page{
 	}
 	
 	//to be done
-	public void handlePreRoll()
-	{   
-		 WaitUtility.sleep(45000);
-		 
-	}
+	public abstract void handlePreRoll();
+	
 	
 	//Thumbing down customizes your station without using a skip.
 	public abstract void handleThumbDownPopUpForArtistStation();

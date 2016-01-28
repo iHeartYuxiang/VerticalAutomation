@@ -44,7 +44,7 @@ public class IOSLiveRadio extends LiveRadio {
 	{
 		//Do nothing
 	}
-	
+	   
 	public void chooseCity()
 	{
 		//choose state, choose city

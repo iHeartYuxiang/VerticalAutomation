@@ -66,26 +66,18 @@ public class androidTest {
 	
 
 	@Test
-	public void testLogin() throws Exception {
+	public void forDemo() throws Exception {
 	   try{
 	      loginPage.login();
-		 	
+	      navigation.gotoPage("liveRadio");
+		   liveRadio.filterLiveStation();
+		   player.doFavorite();
 	   }catch(Exception e)
 	   {   handleException(e);
 	   }
 	}
 	
-	@Test
-	public void testFilterLiveStation() throws Exception {
-		System.out.println("test method:" +  name.getMethodName() );
-	   try{
-		   loginPage.login();
-		   navigation.gotoPage("liveRadio");
-		   liveRadio.filterLiveStation();
-	   }catch(Exception e)
-	   {   handleException(e);
-	   }
-	}
+	
 	
 	  @After
 	  public void tearDown() {

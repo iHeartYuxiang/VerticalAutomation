@@ -40,7 +40,7 @@ public abstract class Login  extends Page{
 	}
 	
 	public void login(String _userName, String _password)
-	{   WaitUtility.sleep(2000);
+	{  // WaitUtility.sleep(2000);
 		//Set Location?
 		if (Page.mediaType.equals("android"))
 			setLocation();

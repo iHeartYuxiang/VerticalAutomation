@@ -60,6 +60,8 @@ public class WebPlayer extends Player {
 			//Add to favorite
 			@FindBy(css=".favorite") protected WebElement web_favorite;
 			@FindBy(css=".icon-favorite-filled") protected WebElement web_icon_fav_filled;
+			@FindBy(css=".icon-favorite-unfilled") protected WebElement web_icon_fav_unfilled;
+			
 			
 			@FindBy(css=".dialog-title") public WebElement web_sharePageTitle;
 			@FindBy(css="button._42ft:nth-child(2)") public WebElement web_shareOnFacebook;
@@ -138,7 +140,7 @@ public class WebPlayer extends Player {
 		 playerArtist = this.web_playerArtist;
 		
 		 more = this.web_more;
-		 favorite = this.web_favorite;
+		 favorite = this.web_icon_fav_unfilled;
 		 share =this.web_share;
 		  
 		  thumbUp = this.web_thumbUp;
@@ -162,4 +164,11 @@ public class WebPlayer extends Player {
 		//FOR SHARE
 		// public WebElement mail;
 	}
+	
+	public  void handlePreRoll()
+	{
+		WaitUtility.sleep(45000);
+	}
+	
+	
 }

@@ -86,7 +86,6 @@ public class IOSLogin extends Login {
 	    {
 	    	
 	    }
-	//	WaitUtility.sleep(5000);
 		
 		chooseStayConnected(false);
 		

@@ -66,42 +66,19 @@ public class iosTest {
 	
 
 	@Test
-	public void testLogin() throws Exception {
+	public void forDemo() throws Exception {
 		System.out.println("test method:" +  name.getMethodName() );
 	   try{
 		   loginPage.login();
+		   navigation.gotoPage("liveRadio");
+           liveRadio.filterLiveStation();
+           player.doFavorite();
 	   }catch(Exception e)
 	   {   handleException(e);
 	   }
 	}
 	
 
-	@Test
-	public void testFilterLiveStation() throws Exception {
-		System.out.println("test method:" +  name.getMethodName() );
-	   try{
-		   loginPage.login();
-		   navigation.gotoPage("liveRadio");
-           liveRadio.filterLiveStation();
-	   }catch(Exception e)
-	   {   handleException(e);
-	   }
-	}
-	
-	@Test
-	public void testSearch_ThumbUp_ThumbDown_Skip_Favorite() throws Exception {
-		System.out.println("test method:" +  name.getMethodName() );
-		System.out.println("CHECK IT RIGHT NOW:" + Page.mediaType);
-	   try{
-		   loginPage.login();
-		   navigation.gotoPage("artistRadio");
-		   Page.search("groban");
-		   
-           //liveRadio.filterLiveStation();
-	   }catch(Exception e)
-	   {   handleException(e);
-	   }
-	}
 	
 	
 	  @After

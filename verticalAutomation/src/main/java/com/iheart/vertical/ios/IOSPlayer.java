@@ -130,5 +130,11 @@ public class IOSPlayer extends Player {
 			// public WebElement mail;
 		}
 		
+		
+		public  void handlePreRoll()
+		{
+			//DO NOTHING since simulator doesn't have preroll
+		}
+		
 
 }

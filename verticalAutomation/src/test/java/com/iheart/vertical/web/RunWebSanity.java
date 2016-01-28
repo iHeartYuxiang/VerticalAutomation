@@ -71,25 +71,7 @@ public class RunWebSanity {
 		
 		
 		  @Test
-	     public void testLogin() throws Exception
-	     {   
-	         System.out.println("test method:" +  name.getMethodName() );
-	         
-	         
-	         try{
-	             loginPage.login();
-	         }catch(Exception e)
-	         {
-	             handleException(e);
-	         }      
-	         
-	        
-	         System.out.println(name.getMethodName() + " is Done.");
-	     }     
-		  
-		  
-		 @Test
-	     public void testFilterLiveStation() throws Exception
+	     public void forDemo() throws Exception
 	     {   
 	         System.out.println("test method:" +  name.getMethodName() );
 	         
@@ -98,6 +80,7 @@ public class RunWebSanity {
 	             loginPage.login();
 	             navigation.gotoPage("liveRadio");
 	             liveRadio.filterLiveStation();
+	             player.doFavorite();
 	         }catch(Exception e)
 	         {
 	             handleException(e);
@@ -106,27 +89,8 @@ public class RunWebSanity {
 	        
 	         System.out.println(name.getMethodName() + " is Done.");
 	     }     
-		
-		
-		  @Test
-		     public void testPlayer_skip() throws Exception
-		     {   
-		         System.out.println("test method:" +  name.getMethodName() );
-		         
-		         
-		         try{
-		             loginPage.login();
-		             player.doSkip();
-		         }catch(Exception e)
-		         {
-		             handleException(e);
-		         }      
-		         
-		        
-		         System.out.println(name.getMethodName() + " is Done.");
-		     }     
-		
 		  
+		
 		
 		     @After
 			    public void tearDown() throws Exception{

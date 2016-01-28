@@ -53,4 +53,10 @@ public class WebLogin extends Login {
 	}
 	
 	
+	public void setLocation()
+	{
+		
+	}
+	   
+	
 }
